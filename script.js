@@ -25,16 +25,41 @@ console.log(getComputerChoice())
  ask user to choice between rock paper and scissors*/
 
  
- let HumanChoice = prompt("Rock, Paper or Scissors?");
+ let getHumanChoice = prompt("Rock, Paper or Scissors?");
  if (HumanChoice.toLowerCase()==="rock"){
    alert("You chose Rock");
- } else if (HumanChoice.toLowerCase()==="paper"){
+ } else if (getHumanChoice.toLowerCase()==="paper"){
    alert("You chose Paper");
- } else if (HumanChoice.toLowerCase() === "scissors"){
+ } else if (getHumanChoice.toLowerCase() === "scissors"){
    alert("You chose Scissors")
  } else {
    alert("Invalid Choice!, check input.")
  }
- console.log(HumanChoice)
+ console.log(getHumanChoice)
 
+ /*Declare the players score variables*/
+ let humanScore = 0
+ let computerScore = 0
+
+ /*Write the logic to play a single round*/
+ function playRound(humanChoice, computerChoice){
+if (humanChoice === computerChoice){
+  return "It's a tie!"
+} else if (
+humanChoice === "rock" && computerChoice === "scissors" ||
+humanChoice === "paper" && computerChoice === "rock" ||
+humanChoice === "scissors" && computerChoice === "paper"
+){
+   humanScore++;
+   return "You win" + humanChoice + "beats" + computerChoice ;
+}else {
+   computerScore++;
+   return "You Lose" + computerChoice + "beats" + "HumanChoice";
+}
+
+}
  
+ const humanSelection = getHumanChoice();
+ const computerSelection = getComputerChoice();
+
+ playRound(humanSelection, computerSelection);
