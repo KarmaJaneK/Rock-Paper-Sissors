@@ -45,29 +45,58 @@ console.log("The computer chose " + getComputerChoice())
  } 
 }
 console.log("You chose " + getHumanChoice())
+ 
+ /*Write the logic to play the entire game
+ 5 rounds*/
+ function playGame(){
  /*Declare the players score variables*/
  let humanScore = 0
  let computerScore = 0
 
- /*Write the logic to play a single round*/
- function playRound(humanChoice, computerChoice){
-if (humanChoice === computerChoice){
-  return "It's a tie!"
-} else if (
-humanChoice === "rock" && computerChoice === "scissors" ||
-humanChoice === "paper" && computerChoice === "rock" ||
-humanChoice === "scissors" && computerChoice === "paper"
-){
+ for (let i = 0; i < 5; i++){
+   const humanChoice = getHumanChoice();
+   const computerChoice = getComputerChoice();
+   const result = playRound(humanChoice,computerChoice);
+ }
+ if (result.startsWith("You win")) {
    humanScore++;
-   return "You win" + humanChoice + "beats" + computerChoice ;
-}else {
+} else if (result.startsWith("You lose")) {
    computerScore++;
-   return "You Lose " + computerChoice + " beats " + humanChoice;
 }
+console.log(`Round ${i + 1}: ${result}`);
+console.log(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
+ }
+
+if (humanScore > computerScore) {
+   console.log("You are the overall winner!");
+} else if (humanScore < computerScore) {
+   console.log("The computer is the overall winner!");
+} else {
+   console.log("The game is a tie!");
 }
 
- 
- const humanSelection = getHumanChoice();
- const computerSelection = getComputerChoice();
-
- console.log(playRound(humanSelection, computerSelection));
+/*Write the logic to play a single round*/
+function playRound(humanChoice, computerChoice){
+   if (humanChoice.toLowerCase === computerChoice.toLowerCase){
+     return "It's a tie!"
+   } else if (
+   humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissors" ||
+   humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock" ||
+   humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "paper"
+   ){
+      humanScore++;
+      return "You win" + humanChoice + "beats" + computerChoice ;
+   }else {
+      computerScore++;
+      return "You Lose " + computerChoice + " beats " + humanChoice;
+   }
+   }
+   
+    
+   
+    
+    
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+    console.log(playRound(humanSelection, computerSelection));
+ }
