@@ -10,32 +10,37 @@ function getComputerChoice(){
    const number = Math.floor(Math.random() * 3 ) + 1
 
     if (number == 1) {
-        return "The computer chose rock";
+      return "rock";
     }  else if (number == 2) {
-        return "The computer chose paper";
+      return "paper";
      } else {
-        return "The computer chose scissors";
+       return "Scissors";       ;
      }
     
 }
 
-console.log(getComputerChoice())
+console.log("The computer chose " + getComputerChoice())
 
 /* Write the logic to get the human choice
  ask user to choice between rock paper and scissors*/
 
  
- let getHumanChoice = prompt("Rock, Paper or Scissors?");
+ function getHumanChoice(){
+   let getHumanChoice = prompt("Rock, Paper or Scissors?");
  if (getHumanChoice.toLowerCase()==="rock"){
    alert("You chose Rock");
+   return "Rock";
  } else if (getHumanChoice.toLowerCase()==="paper"){
    alert("You chose Paper");
+   return "Paper";
  } else if (getHumanChoice.toLowerCase() === "scissors"){
-   alert("You chose Scissors")
+   alert("You chose Scissors");
+   return "Scissors";
  } else {
    alert("Invalid Choice!, check input.")
- }
- console.log(getHumanChoice)
+
+ }}
+ console.log("You chose " + getHumanChoice())
 
  /*Declare the players score variables*/
  let humanScore = 0
@@ -54,12 +59,12 @@ humanChoice === "scissors" && computerChoice === "paper"
    return "You win" + humanChoice + "beats" + computerChoice ;
 }else {
    computerScore++;
-   return "You Lose" + computerChoice + "beats" + "HumanChoice";
+   return "You Lose " + computerChoice + " beats " + humanChoice;
+}
 }
 
-}
  
  const humanSelection = getHumanChoice();
  const computerSelection = getComputerChoice();
 
- playRound(humanSelection, computerSelection);
+ console.log(playRound(humanSelection, computerSelection));
