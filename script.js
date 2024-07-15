@@ -4,15 +4,14 @@
 3 = scissors
 Random choice
  */
-console.log("Hello World")
 
 function getComputerChoice(){
    const number = Math.floor(Math.random() * 3 ) + 1
 
     if (number == 1) {
-      return "rock";
+      return "Rock";
     }  else if (number == 2) {
-      return "paper";
+      return "Paper";
      } else {
        return "Scissors";       ;
      }
@@ -26,22 +25,26 @@ console.log("The computer chose " + getComputerChoice())
 
  
  function getHumanChoice(){
-   let getHumanChoice = prompt("Rock, Paper or Scissors?");
- if (getHumanChoice.toLowerCase()==="rock"){
+   const humanChoice = prompt("Rock, Paper or Scissors?");
+   if (humanChoice === null){
+      alert("You canceled the game.")
+      return null;
+   } else if (humanChoice.toLowerCase() ==="rock"){
    alert("You chose Rock");
    return "Rock";
- } else if (getHumanChoice.toLowerCase()==="paper"){
+ } else if (humanChoice.toLowerCase() ==="paper"){
    alert("You chose Paper");
    return "Paper";
- } else if (getHumanChoice.toLowerCase() === "scissors"){
+ } else if (humanChoice.toLowerCase() === "scissors"){
    alert("You chose Scissors");
    return "Scissors";
  } else {
    alert("Invalid Choice!, check input.")
+   return getHumanChoice();
 
- }}
- console.log("You chose " + getHumanChoice())
-
+ } 
+}
+console.log("You chose " + getHumanChoice())
  /*Declare the players score variables*/
  let humanScore = 0
  let computerScore = 0
