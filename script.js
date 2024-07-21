@@ -55,6 +55,11 @@ console.log("You chose " + getHumanChoice())
 
  for (let i = 0; i < 5; i++){
    const humanChoice = getHumanChoice();
+   if (humanChoice === null){
+    console.log("Game was cancelled.");
+    return;
+
+   }
    const computerChoice = getComputerChoice();
    const result = playRound(humanChoice,computerChoice);
  }
@@ -85,18 +90,14 @@ function playRound(humanChoice, computerChoice){
    humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "paper"
    ){
       humanScore++;
-      return "You win" + humanChoice + "beats" + computerChoice ;
+      return 'You win  ${humanChoice} beats  ${computerChoice}' ;
    }else {
       computerScore++;
-      return "You Lose " + computerChoice + " beats " + humanChoice;
+      return 'You Lose ${computerChoice} beats ${humanChoice}';
    }
    }
-   
-    
-   
-    
     
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
     console.log(playRound(humanSelection, computerSelection));
- }
+  
