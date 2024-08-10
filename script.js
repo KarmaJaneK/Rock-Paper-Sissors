@@ -11,23 +11,6 @@ function getComputerChoice() {
   }
 }
 
-// Function to get the human's choice
-function getHumanChoice() {
-  const humanChoice = prompt("Rock, Paper or Scissors?");
-  if (humanChoice === null) {
-      alert("You canceled the game.");
-      return null;
-  }
-  
-  const choice = humanChoice.toLowerCase();
-  if (choice === "rock" || choice === "paper" || choice === "scissors") {
-      alert(`You chose ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase()}`);
-      return humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1).toLowerCase();
-  } else {
-      alert("Invalid Choice! Please enter Rock, Paper, or Scissors.");
-      return getHumanChoice(); // Recursive call to prompt the user again
-  }
-}
 
 // Function to play a single round of the game
 function playRound(humanChoice, computerChoice) {
@@ -43,16 +26,23 @@ function playRound(humanChoice, computerChoice) {
       return `You lose! ${computerChoice} beats ${humanChoice}.`;
   }
 }
+  // Variables to track the scores
+let humanScore = 0;
+let computerScore = 0;
+
+
 //function for rock button click
 function handleRockClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Rock", computerChoice);
+  updateScores(result);
   updateResults(`You chose Rock. Computer chose ${computerChoice}. ${result}`);
 }
 // function to handle paper choice
 function handlePaperClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Paper", computerChoice);
+  updateScores(result);
   updateResults(`You chose Paper. Computer chose ${computerChoice}. ${result}`);
 }
 
@@ -60,10 +50,27 @@ function handlePaperClick(){
 function handleScissorsClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Scissors", computerChoice);
+  updateScores(result);
   updateResults(`You chose Scissors. Computer chose ${computerChoice}. ${result}`);
 }
 
+// Function to update the scores based on the result
+function updateScores(result) {
+  if (result.includes("You win")) {
+    humanScore++;
+  } else if (result.includes("You lose")) {
+    computerScore++;
+  }
+    // Display current scores
+    updateResults(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
 
+    // Check for winner
+    if (humanScore >= 5) {
+      updateResults("You are the winner!");
+    } else if (computerScore >= 5) {
+      updateResults("The computer is the winner!");
+    }
+  }
 
 const rockButton = document.createElement("button");
 rockButton.textContent = "Rock";
@@ -81,6 +88,10 @@ const results = document.createElement("div");
 results.id = "results" // Assign an ID for easy access later
 document.body.appendChild(results);
 
+document.body.appendChild(rockButton);
+document.body.appendChild(paperButton);
+document.body.appendChild(scissorButton);
+
 function updateResults(resultText){
   const resultDiv = document.getElementById('results');
   const resultElement = document.createElement ("p");
@@ -94,15 +105,12 @@ function updateResults(resultText){
       updateResults(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
 
   // Log final results
-  if (humanScore > computerScore) {
-    updateResults("You are the overall winner!");
-  } else if (humanScore < computerScore) {
-    updateResults("The computer is the overall winner!");
-  } else {
-    updateResults("The game is a tie!");
-  }
+  if (humanScore >= 5) {
+          updateResults("You are the  winner!");}
+
+  
 
 
 
 
-playGame();
+
