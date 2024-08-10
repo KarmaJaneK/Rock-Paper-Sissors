@@ -47,17 +47,20 @@ function playRound(humanChoice, computerChoice) {
 function handleRockClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Rock", computerChoice);
+  updateResults(`You chose Rock. Computer chose ${computerChoice}. ${result}`);
 }
 // function to handle paper choice
 function handlePaperClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Paper", computerChoice);
+  updateResults(`You chose Paper. Computer chose ${computerChoice}. ${result}`);
 }
 
 //function to handle Scissors choice
 function handleScissorsClick(){
   const computerChoice = getComputerChoice();
   const result = playRound("Scissors", computerChoice);
+  updateResults(`You chose Scissors. Computer chose ${computerChoice}. ${result}`);
 }
 
 
@@ -74,23 +77,32 @@ const scissorButton = document.createElement("button");
 scissorButton.textContent = "Scissors";
 scissorButton.addEventListener("click", handleScissorsClick);
 
+const results = document.createElement("div");
+results.id = "results" // Assign an ID for easy access later
+document.body.appendChild(results);
 
-
+function updateResults(resultText){
+  const resultDiv = document.getElementById('results');
+  const resultElement = document.createElement ("p");
+  resultElement.textContent = resultText;
+  resultDiv.appendChild(resultElement);
 }
 
+
       // Log round result and current score
-      console.log(`Round ${i + 1}: ${result}`);
-      console.log(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
-  }
+      updateResults(`Round ${i + 1}: ${result}`);
+      updateResults(`Current Score - You: ${humanScore}, Computer: ${computerScore}`);
 
   // Log final results
   if (humanScore > computerScore) {
-      console.log("You are the overall winner!");
+    updateResults("You are the overall winner!");
   } else if (humanScore < computerScore) {
-      console.log("The computer is the overall winner!");
+    updateResults("The computer is the overall winner!");
   } else {
-      console.log("The game is a tie!");
+    updateResults("The game is a tie!");
   }
-}
+
+
+
 
 playGame();
