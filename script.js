@@ -43,27 +43,40 @@ function playRound(humanChoice, computerChoice) {
       return `You lose! ${computerChoice} beats ${humanChoice}.`;
   }
 }
+//function for rock button click
+function handleRockClick(){
+  const computerChoice = getComputerChoice();
+  const result = playRound("Rock", computerChoice);
+}
+// function to handle paper choice
+function handlePaperClick(){
+  const computerChoice = getComputerChoice();
+  const result = playRound("Paper", computerChoice);
+}
 
-// Function to play the entire game for 5 rounds
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+//function to handle Scissors choice
+function handleScissorsClick(){
+  const computerChoice = getComputerChoice();
+  const result = playRound("Scissors", computerChoice);
+}
 
-  for (let i = 0; i < 5; i++) {
-      const humanChoice = getHumanChoice();
-      if (humanChoice === null) {
-          console.log("Game was cancelled.");
-          return; // Exit the game
-      }
 
-      const computerChoice = getComputerChoice();
-      const result = playRound(humanChoice, computerChoice);
 
-      if (result.startsWith("You win")) {
-          humanScore++;
-      } else if (result.startsWith("You lose")) {
-          computerScore++;
-      }
+const rockButton = document.createElement("button");
+rockButton.textContent = "Rock";
+rockButton.addEventListener("click", handleRockClick)
+
+const paperButton = document.createElement("button");
+paperButton.textContent = "Paper";
+paperButton.addEventListener("click", handlePaperClick);
+
+const scissorButton = document.createElement("button");
+scissorButton.textContent = "Scissors";
+scissorButton.addEventListener("click", handleScissorsClick);
+
+
+
+}
 
       // Log round result and current score
       console.log(`Round ${i + 1}: ${result}`);
